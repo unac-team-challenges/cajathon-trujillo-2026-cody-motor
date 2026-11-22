@@ -1,0 +1,30 @@
+name: Tarea
+description: Trabajo planificado (funcionalidad, docs, configuración)
+labels: [enhancement]
+body:
+  - type: textarea
+    id: objetivo
+    attributes:
+      label: Objetivo
+      description: Qué se logra y para quién.
+    validations:
+      required: true
+  - type: textarea
+    id: aceptacion
+    attributes:
+      label: Criterio de aceptación
+      description: Cómo se verifica que está hecho. Debe poder comprobarse.
+      placeholder: "- [ ] Dado X, cuando Y, entonces Z"
+    validations:
+      required: true
+  - type: dropdown
+    id: tamano
+    attributes:
+      label: Tamaño estimado
+      options: ["XS (<1 h)", "S (<3 h)", "M (<1 día)", "L (dividir en sub-issues)"]
+    validations:
+      required: true
+  - type: textarea
+    id: notas
+    attributes:
+      label: Notas, enlaces o dependencias
