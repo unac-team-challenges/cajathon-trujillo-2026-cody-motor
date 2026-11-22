@@ -16,9 +16,9 @@ Es parte de un metarepo. Si tienes acceso al repo padre privado `cajathon-trujil
 ## Flujo
 
 1. Issue en este repo, con criterio de aceptación.
-2. Rama desde `develop`: `<tipo>/<issue>-<slug>`, por ejemplo `feat/12-grafo-de-relaciones`.
+2. Rama desde `develop`: `<tipo>/<issue>-<slug>`, por ejemplo `feat/12-pantalla-inicial`.
    ```bash
-   gh issue develop 12 --base develop --name feat/12-grafo-de-relaciones --checkout
+   gh issue develop 12 --base develop --name feat/12-pantalla-inicial --checkout
    ```
 3. Commits en formato Conventional Commits. PR contra `develop` con un título `tipo(alcance): descripción` (lo valida la CI) y `Closes #12`.
 4. 1 aprobación de otra persona y **Squash and merge**.
@@ -34,4 +34,4 @@ cargo nextest run
 
 ## Estado
 
-Stack: Rust (edición 2024) con `axum`, `utoipa` (publica `openapi.json`), `petgraph` y `polars`. El detalle y las versiones están en el ADR-0003 del repo padre; aún no hay código.
+Stack: Rust (edición 2024) con `axum` y `utoipa` (publica `openapi.json`). El detalle y las versiones están en el ADR-0003 del repo padre; aún no hay código.

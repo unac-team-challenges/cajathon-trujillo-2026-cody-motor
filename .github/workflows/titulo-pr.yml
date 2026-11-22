@@ -10,20 +10,26 @@ jobs:
   titulo-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Validar Conventional Commits
+      - name: Validar título y rama de origen
         env:
-          # El título va por env, nunca interpolado en el script (evita inyección).
+          # Los valores van por env, nunca interpolados en el script (evita inyección).
           TITULO: ${{ github.event.pull_request.title }}
           BASE: ${{ github.event.pull_request.base.ref }}
+          ORIGEN: ${{ github.event.pull_request.head.ref }}
         run: |
           if [ "$BASE" = "main" ]; then
-            patron='^(release: v[0-9]+\.[0-9]+\.[0-9]+|fix(\([a-z0-9-]+\))?!?: .+|chore\(sync\): .+)$'
+            # main solo recibe releases desde develop o hotfix desde una rama fix/.
+            case "$ORIGEN" in
+              develop) patron='^release: v[0-9]+\.[0-9]+\.[0-9]+$' ;;
+              fix/*)   patron='^fix(\([a-z0-9-]+\))?!?: [a-z0-9áéíóúñ`(].+$' ;;
+              *) echo "::error::main solo acepta PRs desde develop (release) o fix/* (hotfix), no desde '$ORIGEN'."; exit 1 ;;
+            esac
           else
-            patron='^(feat|fix|docs|chore|refactor|test|perf|ci|spike|build|revert)(\([a-z0-9-]+\))?!?: [^A-Z].+$'
+            patron='^(feat|fix|docs|chore|refactor|test|perf|ci|spike|build|revert)(\([a-z0-9-]+\))?!?: [a-z0-9áéíóúñ`(].+$'
           fi
           if printf '%s' "$TITULO" | grep -Eq "$patron"; then
             echo "OK: $TITULO"
           else
-            echo "::error::Título inválido para base '$BASE': '$TITULO'. Ver AGENTS.md §4 y §5."
+            echo "::error::Título inválido para base '$BASE': '$TITULO'. Formato: tipo(alcance): descripción en minúscula. Ver AGENTS.md, sección Flujo."
             exit 1
           fi
