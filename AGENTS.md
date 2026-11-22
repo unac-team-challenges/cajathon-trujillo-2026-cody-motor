@@ -1,8 +1,8 @@
-# AGENTS.md — cajathon-trujillo-2026-thetigers-motor
+# AGENTS.md — cajathon-trujillo-2026-cody-motor
 
-Repo **público** del equipo TheTigers (Cajathon Trujillo 2026). Contiene el **motor**: IA, analítica y API. Es dueño del contrato OpenAPI.
+Repo **público** del equipo Cody (Cajathon Trujillo 2026). Contiene el **motor**: IA, analítica y API. Es dueño del contrato OpenAPI.
 
-Es parte de un metarepo. Si tienes acceso al repo padre privado `cajathon-trujillo-2026-thetigers`, su `AGENTS.md` y su `docs/INDICE.md` mandan sobre este archivo.
+Es parte de un metarepo. Si tienes acceso al repo padre privado `cajathon-trujillo-2026-cody`, su `AGENTS.md` y su `docs/INDICE.md` mandan sobre este archivo.
 
 ## Reglas
 
@@ -34,4 +34,4 @@ cargo nextest run
 
 ## Estado
 
-Stack pendiente de ADR-0003 en el repo padre. Al definirlo, actualiza la sección de verificaciones y el `.gitignore`.
+Stack: Rust (edición 2024) con `axum`, `utoipa` (publica `openapi.json`), `petgraph` y `polars`. El detalle y las versiones están en el ADR-0003 del repo padre; aún no hay código.
